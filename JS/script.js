@@ -1,14 +1,16 @@
 holes = []
 Processes = [];
 var dict = {};
+var i = 0;
 
 function addHole()
 {
-    function hole(start , size , full = false)
+    function hole(start , size ,id = i, full = false)
     {
         this.start = start;
         this.size = size;
         this.full = full;
+        this.id = id;
 
         this.getStart = function()
         {
@@ -24,8 +26,14 @@ function addHole()
         {
             return this.full
         }
+
+        this.getId = function()
+        {
+            return this.id;
+        }
         
         holes.push(this);
+        i += 1;
     }
 
     var holeStart = document.getElementById("holeStart").value;
@@ -98,9 +106,9 @@ function startAllocation()
                     console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size" + holes[i].getSize());
                     holes[i].full = true;
                     Processes[j].allocated = true;
-                    console.log("Hole with size " + holes[i].getSize() + " is now full");
+                    console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
 
-                    dict[holes[i].getSize()] = Processes[i].getName();
+                    dict[Processes[j].getName()] = holes[i].getId();
 
                     var x = document.getElementById("deAllocationSelect");
                     var option = document.createElement("option");
@@ -132,10 +140,10 @@ function startAllocation()
                     console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size" + holes[i].getSize());
                     holes[i].full = true;
                     Processes[j].allocated = true;
-                    console.log("Hole with size " + holes[i].getSize() + " is now full");
+                    console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
 
-                    dict[holes[i].getSize()] = Processes[i].getName();
-
+                    dict[Processes[j].getName()] = holes[i].getId();
+                    
                     var x = document.getElementById("deAllocationSelect");
                     var option = document.createElement("option");
                     option.text = Processes[i].getName();
@@ -171,5 +179,15 @@ function startAllocation()
 
 function startdeAllocation()
 {
+    var deallocate = document.getElementById("deAllocationSelect");
+    var process = deallocate.options[deallocate.selectedIndex].value;
 
+    for(var i = 0 ; i < Processes.length ; i++)
+    {
+        if(process = Processes[i].getName())
+        {
+            var freeHole = dict[Processes[i].getName()];
+            console.log(freeHole);
+        }
+    }
 }
