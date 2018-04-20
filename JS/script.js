@@ -102,6 +102,11 @@ function startAllocation()
 
                     dict[holes[i].getSize()] = Processes[i].getName();
 
+                    var x = document.getElementById("deAllocationSelect");
+                    var option = document.createElement("option");
+                    option.text = Processes[i].getName();
+                    x.appendChild(option);
+
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
@@ -131,6 +136,11 @@ function startAllocation()
 
                     dict[holes[i].getSize()] = Processes[i].getName();
 
+                    var x = document.getElementById("deAllocationSelect");
+                    var option = document.createElement("option");
+                    option.text = Processes[i].getName();
+                    x.appendChild(option);
+
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
@@ -149,15 +159,17 @@ function startAllocation()
             console.log(Processes[i].getName() +" With size "+Processes[i].getSize()+ " is not Allocated");
         }
     }
-
-    for(var key in dict)
-    {
-        console.log(key , dict[key]);
-    }
 }
+
+// for(var key in dict)
+// {
+//     console.log(key , dict[key]);
+// }
+
+
 
 
 function startdeAllocation()
 {
-    
+
 }
