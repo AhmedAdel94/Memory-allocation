@@ -41,7 +41,7 @@ function addHole()
     ctx.fillRect(0,holeStart,200,0.75*holeSize);
     ctx.font = "25px Arial";
     ctx.fillStyle = "#FFF";
-    ctx.fillText(holeStart + "-->" + holeSize, 20, Number(holeStart)+Number(holeSize)/2);
+    ctx.fillText(holeStart + "-->" + (Number(holeStart)+Number(holeSize)), 20, Number(holeStart)+Number(holeSize)/2);
     
 }
 
@@ -100,6 +100,8 @@ function startAllocation()
                     Processes[j].allocated = true;
                     console.log("Hole with size " + holes[i].getSize() + " is now full");
 
+                    dict[holes[i].getSize()] = Processes[i].getName();
+
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
@@ -127,6 +129,8 @@ function startAllocation()
                     Processes[j].allocated = true;
                     console.log("Hole with size " + holes[i].getSize() + " is now full");
 
+                    dict[holes[i].getSize()] = Processes[i].getName();
+
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
@@ -145,4 +149,15 @@ function startAllocation()
             console.log(Processes[i].getName() +" With size "+Processes[i].getSize()+ " is not Allocated");
         }
     }
+
+    for(var key in dict)
+    {
+        console.log(key , dict[key]);
+    }
+}
+
+
+function startdeAllocation()
+{
+    
 }

@@ -41,17 +41,32 @@
 
             <br><br>
 
-            <form onsubmit="startAllocation()" id="startAllocationForm">
-                <select class="form-control" id="Allocation">
-                    <option selected disabled>Choose Allocation Methodology</option>
-                    <option>Best Fit</option>
-                    <option>First Fit</option>
-                </select>
+            <div id="AllocationDiv">
+                <form onsubmit="startAllocation()" id="startAllocationForm">
+                    <select class="form-control" id="Allocation">
+                        <option selected disabled>Choose Allocation Methodology</option>
+                        <option>Best Fit</option>
+                        <option>First Fit</option>
+                    </select>
 
-                <h2 class="text-center">
-                    <button type="submit" class="btn btn-lg btn-success">Start allocation</button>
-                </h2>
-            </form>
+                    <h2 class="text-center">
+                        <button type="submit" class="btn btn-lg btn-success" onclick="return doneAllocation()">Start allocation</button>
+                    </h2>
+                </form>
+            </div>
+
+            <div id="deAllocation" style="display:none">
+                <h2 class="text-center">Deallocate a process</h2>
+                <form onsubmit="startdeAllocation()" id="startdeAllocationForm">
+                    <select class="form-control" id="deAllocation">
+                        <option selected disabled>Choose Process to deallocate</option>
+                        
+                    </select>
+                    <h2 class="text-center">
+                        <button type="submit" class="btn btn-lg btn-success" onclick="return doneAllocation()">Deallocate Process</button>
+                    </h2>
+                </form>
+            </div>
 
             <h2 class="text-center" id="text_canvas" style="display: none"><canvas id="myCanvas" width="200" height="1000"
             style="border:1px solid #c3c3c3">
@@ -86,6 +101,15 @@
         {
             var y = document.getElementById("Processes");
             y.style.display = "none";
+        }
+
+        function doneAllocation()
+        {
+            var x = document.getElementById("AllocationDiv");
+            x.style.display = "none";
+
+            var y = document.getElementById("deAllocation");
+            y.style.display = "block";
         }
     </script>
 </html>
