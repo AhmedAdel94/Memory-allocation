@@ -137,4 +137,12 @@ function startAllocation()
             }
         }
     }
+
+    for(var i = 0 ; i < Processes.length ; i++)
+    {
+        if(Processes[i].Check() == false)
+        {
+            console.log(Processes[i].getName() +" With size "+Processes[i].getSize()+ " is not Allocated");
+        }
+    }
 }
