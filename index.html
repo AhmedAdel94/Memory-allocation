@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Memory Allocation</title>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+
+        <script src="js/script.js"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <br>
+        <div class="container-fluid">
+            <div id = "Holes">
+                <h2 class="text-center">Add hole</h2>
+                <form onsubmit="addHole()" id="addHoleForm">
+                    <input type="text" class="form-control" id="holeStart" placeholder="Enter hole start"><br>
+                    <input type="text" class="form-control" id="holeSize" placeholder="Enter hole size"><br>
+                    <h2 class="text-center">
+                        <button type="submit" value="Add Hole" class="btn btn-lg btn-success">Add hole</button>
+                        <button class="btn btn-lg btn-danger" onclick="return doneHoles()" type="button">Done</button>
+                    </h2>
+                </form>
+            </div>
+
+            <br><br>
+
+            <div id = "Processes">
+                <h2 class="text-center">Add process</h2>
+                <form onsubmit="addProcess()" id="addProcessForm">
+                    <input type="text" class="form-control" id="processName" placeholder="Enter process name"><br>
+                    <input type="text" class="form-control" id="processSize" placeholder="Enter process size"><br>
+                    <h2 class="text-center">
+                        <button type="submit" class="btn btn-lg btn-success">Add process</button>
+                        <button class="btn btn-lg btn-danger" onclick="return doneProcesses()" type="button">Done</button>
+                    </h2>
+                </form>
+            </div>
+
+            <br><br>
+
+            <form onsubmit="startAllocation()" id="startAllocationForm">
+                <select class="form-control" id="Allocation">
+                    <option selected disabled>Choose Allocation Methodology</option>
+                    <option>Best Fit</option>
+                    <option>First Fit</option>
+                </select>
+
+                <h2 class="text-center">
+                    <button type="submit" class="btn btn-lg btn-success">Start allocation</button>
+                </h2>
+            </form>
+
+            <h2 class="text-center" id="text_canvas" style="display: none"><canvas id="myCanvas" width="200" height="1000"
+            style="border:1px solid #c3c3c3">
+            </canvas></h2>
+
+        </div>
+    </body>
+
+    <script>
+        $("#addHoleForm").submit(function(e) {
+            e.preventDefault();
+        });
+
+        $("#addProcessForm").submit(function(e) {
+            e.preventDefault();
+        });
+
+        $("#startAllocationForm").submit(function(e) {
+            e.preventDefault();
+        });
+
+        function doneHoles()
+        {
+            var x = document.getElementById("Holes");
+            x.style.display = "none";
+            
+            var y = document.getElementById("text_canvas");
+            y.style.display = "block";
+        }
+
+        function doneProcesses()
+        {
+            var y = document.getElementById("Processes");
+            y.style.display = "none";
+        }
+    </script>
+</html>
