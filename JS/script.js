@@ -113,6 +113,28 @@ function startAllocation()
     else
     {
         console.log("You have choosen Best fit");
-        
+        holes.sort(function(a,b){return a.getSize()-b.getSize()});
+        Processes.sort(function(a,b){return a.getSize()-b.getSize()});
+
+        for(var j = 0 ; j < Processes.length ; j++)
+        {
+            for(var i = 0 ; i < holes.length ; i++)
+            {
+                if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && holes[i].full == false && Processes[j].allocated == false)
+                {
+                    console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size" + holes[i].getSize());
+                    holes[i].full = true;
+                    Processes[j].allocated = true;
+                    console.log("Hole with size " + holes[i].getSize() + " is now full");
+
+                    var canvas = document.getElementById("myCanvas");
+                    var ctx = canvas.getContext("2d");
+                    ctx.fillStyle = "#0000FF";
+                    ctx.fillRect(0,holes[i].start,200,0.75*Processes[j].getSize());
+                    ctx.fillStyle = "#FFF";
+                    ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getStart())+0.5*Number(Processes[j].getSize()));
+                }
+            }
+        }
     }
 }
