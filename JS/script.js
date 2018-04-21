@@ -134,6 +134,7 @@ function startAllocation()
             }
         }
     }
+
     else if(method == "Best Fit")
     {
         for(var i = 0 ;  i < holes.length ; i++)
@@ -177,6 +178,7 @@ function startAllocation()
             }
         }
     }
+
     else
     {
         alert("Please choose allocation method");
@@ -229,4 +231,39 @@ function startdeAllocation()
             }
         }
     }
+}
+
+function doneHoles()
+{
+    if(holes.length == 0)
+    {
+        alert("Please add at least one hole");
+        return false;
+    }
+    var x = document.getElementById("Holes");
+    x.style.display = "none";
+    
+    var y = document.getElementById("text_canvas");
+    y.style.display = "block";
+}
+
+function doneProcesses()
+{
+    if(Processes.length == 0)
+    {
+        alert("Please add at least one Process");
+        return false;
+    }
+
+    var y = document.getElementById("Processes");
+    y.style.display = "none";
+}
+
+function doneAllocation()
+{
+    // var x = document.getElementById("AllocationDiv");
+    // x.style.display = "none";
+
+    var y = document.getElementById("deAllocation");
+    y.style.display = "block";
 }
