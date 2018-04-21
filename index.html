@@ -34,7 +34,7 @@
                     <input type="text" class="form-control" id="processSize" placeholder="Enter process size"><br>
                     <h2 class="text-center">
                         <button type="submit" class="btn btn-lg btn-success">Add process</button>
-                        <button class="btn btn-lg btn-danger" type="button">Done</button>
+                        <button class="btn btn-lg btn-danger" type="button" onclick="return doneProcesses()">Done</button>
                     </h2>
                 </form>
             </div>
@@ -102,11 +102,11 @@
             y.style.display = "block";
         }
 
-        // function doneProcesses()
-        // {
-        //     var y = document.getElementById("Processes");
-        //     y.style.display = "none";
-        // }
+        function doneProcesses()
+        {
+            var y = document.getElementById("Processes");
+            y.style.display = "none";
+        }
 
         function doneAllocation()
         {
