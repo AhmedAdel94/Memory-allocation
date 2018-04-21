@@ -112,7 +112,7 @@ function startAllocation()
 
                     var x = document.getElementById("deAllocationSelect");
                     var option = document.createElement("option");
-                    option.text = Processes[i].getName();
+                    option.text = Processes[j].getName();
                     x.appendChild(option);
 
                     var canvas = document.getElementById("myCanvas");
@@ -146,7 +146,7 @@ function startAllocation()
                     
                     var x = document.getElementById("deAllocationSelect");
                     var option = document.createElement("option");
-                    option.text = Processes[i].getName();
+                    option.text = Processes[j].getName();
                     x.appendChild(option);
 
                     var canvas = document.getElementById("myCanvas");
@@ -178,13 +178,22 @@ function startdeAllocation()
 {
     var deallocate = document.getElementById("deAllocationSelect");
     var process = deallocate.options[deallocate.selectedIndex].value;
+    //console.log(process);
 
     for(var i = 0 ; i < Processes.length ; i++)
     {
-        if(process = Processes[i].getName())
+        if(process == Processes[i].getName())
         {
             var freeHole = dict[Processes[i].getName()];
-            console.log(freeHole);
+            //console.log(freeHole);
+
+            for(var j = 0 ; j < holes.length ; j++)
+            {
+                if(holes[j].getId() == freeHole)
+                {
+                    console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
+                }
+            }
         }
     }
 }
