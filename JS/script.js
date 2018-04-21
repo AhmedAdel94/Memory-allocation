@@ -103,7 +103,7 @@ function startAllocation()
             {
                 if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && holes[i].full == false && Processes[j].allocated == false)
                 {
-                    console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size" + holes[i].getSize());
+                    console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size " + holes[i].getSize());
                     holes[i].full = true;
                     Processes[j].allocated = true;
                     console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
@@ -137,7 +137,7 @@ function startAllocation()
             {
                 if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && holes[i].full == false && Processes[j].allocated == false)
                 {
-                    console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size" + holes[i].getSize());
+                    console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size " + holes[i].getSize());
                     holes[i].full = true;
                     Processes[j].allocated = true;
                     console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
@@ -173,9 +173,6 @@ function startAllocation()
 // {
 //     console.log(key , dict[key]);
 // }
-
-
-
 
 function startdeAllocation()
 {
