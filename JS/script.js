@@ -125,7 +125,7 @@ function startAllocation()
             }
         }
     }
-    else
+    else if(method == "Best Fit")
     {
         console.log("You have choosen Best fit");
         holes.sort(function(a,b){return a.getSize()-b.getSize()});
@@ -158,6 +158,10 @@ function startAllocation()
                 }
             }
         }
+    }
+    else
+    {
+        alert("Please choose allocation method");
     }
 
     for(var k = 0 ; k < Processes.length ; k++)
@@ -192,6 +196,15 @@ function startdeAllocation()
                 if(holes[j].getId() == freeHole)
                 {
                     console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
+                    var canvas = document.getElementById("myCanvas");
+                    var ctx = canvas.getContext("2d");
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect(0,holes[j].start,200,0.75*holes[j].size);
+                    ctx.font = "25px Arial";
+                    ctx.fillStyle = "#FFF";
+                    ctx.fillText(holes[j].start + "-->" + (Number(holes[j].start)+Number(holes[j].size)), 20, Number(holes[j].start)+Number(holes[i].size)/2);
+
+                    holes[j].full = false;
                 }
             }
         }
