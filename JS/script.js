@@ -96,6 +96,15 @@ function startAllocation()
 
     if(method == "First Fit")
     {
+        for(var i = 0 ;  i < holes.length ; i++)
+        {
+            holes[i].full = false;
+        }
+        for(var i = 0 ;  i < holes.length ; i++)
+        {
+            Processes[i].allocated = false;
+        }
+        
         console.log("You have choosen first fit");
         for(var j = 0 ; j < Processes.length ; j++)
         {
@@ -127,6 +136,15 @@ function startAllocation()
     }
     else if(method == "Best Fit")
     {
+        for(var i = 0 ;  i < holes.length ; i++)
+        {
+            holes[i].full = false;
+        }
+        for(var i = 0 ;  i < holes.length ; i++)
+        {
+            Processes[i].allocated = false;
+        }
+
         console.log("You have choosen Best fit");
         holes.sort(function(a,b){return a.getSize()-b.getSize()});
         Processes.sort(function(a,b){return a.getSize()-b.getSize()});
