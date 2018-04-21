@@ -227,6 +227,31 @@ function startdeAllocation()
                     Processes[i].allocated = false;
                     console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
                     console.log("Process " + Processes[i].getName() + " Is now deallocated");
+
+                    // for(var k = 0 ; k < Processes.length ; k++)
+                    // {
+                    //     if((Number(Processes[k].getSize()) <= Number(holes[j].getSize())) && Processes[k].allocated == false)
+                    //     {
+                    //         console.log("Process "+Processes[k].getName()+" With a size of "+Processes[k].getSize() + " Has occupied a hole with a size " + holes[j].getSize());
+                    //         holes[j].full = true;
+                    //         Processes[k].allocated = true;
+                    //         console.log("Hole " + holes[j].getId() +  " with size " + holes[j].getSize() + " is now full");
+
+                    //         dict[Processes[k].getName()] = holes[j].getId();
+                            
+                    //         var x = document.getElementById("deAllocationSelect");
+                    //         var option = document.createElement("option");
+                    //         option.text = Processes[k].getName();
+                    //         x.appendChild(option);
+
+                    //         var canvas = document.getElementById("myCanvas");
+                    //         var ctx = canvas.getContext("2d");
+                    //         ctx.fillStyle = "#0000FF";
+                    //         ctx.fillRect(0,holes[j].start,200,0.75*Processes[k].getSize());
+                    //         ctx.fillStyle = "#FFF";
+                    //         ctx.fillText(Processes[k].getName(), 20, Number(holes[j].getStart())+0.5*Number(Processes[k].getSize()));
+                    //     }
+                    // }
                 }
             }
         }
