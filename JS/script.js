@@ -213,7 +213,6 @@ function startdeAllocation()
             {
                 if(holes[j].getId() == freeHole)
                 {
-                    console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#FF0000";
@@ -224,6 +223,8 @@ function startdeAllocation()
 
                     holes[j].full = false;
                     Processes[i].allocated = false;
+                    console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
+                    console.log("Process " + Processes[i].getName() + " Is now deallocated");
                 }
             }
         }
