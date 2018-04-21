@@ -160,11 +160,11 @@ function startAllocation()
         }
     }
 
-    for(var i = 0 ; i < Processes.length ; i++)
+    for(var k = 0 ; k < Processes.length ; k++)
     {
-        if(Processes[i].Check() == false)
+        if(Processes[k].allocated == false)
         {
-            console.log(Processes[i].getName() +" With size "+Processes[i].getSize()+ " is not Allocated");
+            console.log(Processes[k].getName() +" With size "+Processes[k].getSize()+ " is not Allocated");
         }
     }
 }

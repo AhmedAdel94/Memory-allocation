@@ -34,7 +34,7 @@
                     <input type="text" class="form-control" id="processSize" placeholder="Enter process size"><br>
                     <h2 class="text-center">
                         <button type="submit" class="btn btn-lg btn-success">Add process</button>
-                        <button class="btn btn-lg btn-danger" onclick="return doneProcesses()" type="button">Done</button>
+                        <button class="btn btn-lg btn-danger" type="button">Done</button>
                     </h2>
                 </form>
             </div>
@@ -56,6 +56,7 @@
             </div>
 
             <div id="deAllocation" style="display:none">
+                <br>
                 <h2 class="text-center">Deallocate a process</h2>
                 <form onsubmit="startdeAllocation()" id="startdeAllocationForm">
                     <select class="form-control" id="deAllocationSelect">
@@ -109,8 +110,8 @@
 
         function doneAllocation()
         {
-            var x = document.getElementById("AllocationDiv");
-            x.style.display = "none";
+            // var x = document.getElementById("AllocationDiv");
+            // x.style.display = "none";
 
             var y = document.getElementById("deAllocation");
             y.style.display = "block";
