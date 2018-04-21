@@ -104,7 +104,7 @@ function startAllocation()
         {
             Processes[i].allocated = false;
         }
-        
+
         console.log("You have choosen first fit");
         for(var j = 0 ; j < Processes.length ; j++)
         {
@@ -223,6 +223,7 @@ function startdeAllocation()
                     ctx.fillText(holes[j].start + "-->" + (Number(holes[j].start)+Number(holes[j].size)), 20, Number(holes[j].start)+Number(holes[i].size)/2);
 
                     holes[j].full = false;
+                    Processes[i].allocated = false;
                 }
             }
         }
