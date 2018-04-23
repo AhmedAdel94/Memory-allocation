@@ -2,6 +2,7 @@ holes = []
 Processes = [];
 var dict = {};
 var i = 0;
+var deallocationList = [];
 
 function addHole()
 {
@@ -119,10 +120,17 @@ function startAllocation()
 
                     dict[Processes[j].getName()] = holes[i].getId();
 
-                    var x = document.getElementById("deAllocationSelect");
-                    var option = document.createElement("option");
-                    option.text = Processes[j].getName();
-                    x.appendChild(option);
+                    
+
+                    if(deallocationList.indexOf(Processes[j].getName()) == -1)
+                    {
+                        var x = document.getElementById("deAllocationSelect");
+                        var option = document.createElement("option");
+                        option.text = Processes[j].getName();
+                        x.appendChild(option);
+                    }
+
+                    deallocationList.push(Processes[j].getName());
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
@@ -162,11 +170,20 @@ function startAllocation()
                     console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
 
                     dict[Processes[j].getName()] = holes[i].getId();
+
                     
-                    var x = document.getElementById("deAllocationSelect");
-                    var option = document.createElement("option");
-                    option.text = Processes[j].getName();
-                    x.appendChild(option);
+
+                    if(deallocationList.indexOf(Processes[j].getName()) == -1)
+                    {
+                        var x = document.getElementById("deAllocationSelect");
+                        var option = document.createElement("option");
+                        option.text = Processes[j].getName();
+                        x.appendChild(option);
+                    }
+
+                    deallocationList.push(Processes[j].getName());
+                    
+                    
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
