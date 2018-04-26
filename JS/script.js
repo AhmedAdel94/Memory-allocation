@@ -6,12 +6,13 @@ var deallocationList = [];
 
 function addHole()
 {
-    function hole(start , size ,id = i, full = false)
+    function hole(start , size ,id = i, full = false , filled = 0)
     {
         this.start = start;
         this.size = size;
         this.full = full;
         this.id = id;
+        this.filled = filled
 
         this.getStart = function()
         {
@@ -32,6 +33,11 @@ function addHole()
         {
             return this.id;
         }
+
+        this.getFilled = function()
+        {
+            return this.filled;
+        }
         
         holes.push(this);
         i += 1;
@@ -47,7 +53,7 @@ function addHole()
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0,holeStart,200,0.75*holeSize);
+    ctx.fillRect(0,holeStart,200,holeSize);
     ctx.font = "25px Arial";
     ctx.fillStyle = "#FFF";
     ctx.fillText(holeStart + "-->" + (Number(holeStart)+Number(holeSize)), 20, Number(holeStart)+Number(holeSize)/2);
@@ -56,11 +62,12 @@ function addHole()
 
 function addProcess()
 {
-    function process(name , size , allocated = false)
+    function process(name , size , allocated = false , start = 0)
     {
         this.name = name;
         this.size = size;
         this.allocated = allocated;
+        this.start = start;
 
         this.getName = function()
         {
@@ -75,6 +82,11 @@ function addProcess()
         this.Check = function()
         {
             return this.allocated;
+        }
+
+        this.getStart = function()
+        {
+            return this.start;
         }
         
         Processes.push(this);
@@ -111,7 +123,7 @@ function startAllocation()
         {
             for(var i = 0 ; i < holes.length ; i++)
             {
-                if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && holes[i].full == false && Processes[j].allocated == false)
+                if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && (Number(holes[i].getSize() - holes[i].getFilled()) > Number(Processes[j].getSize())) && Processes[j].allocated == false)
                 {
                     console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size " + holes[i].getSize());
                     holes[i].full = true;
@@ -120,7 +132,6 @@ function startAllocation()
 
                     dict[Processes[j].getName()] = holes[i].getId();
 
-                    
 
                     if(deallocationList.indexOf(Processes[j].getName()) == -1)
                     {
@@ -130,14 +141,19 @@ function startAllocation()
                         x.appendChild(option);
                     }
 
+                    Processes[j].start = holes[i].getFilled();
+
                     deallocationList.push(Processes[j].getName());
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
-                    ctx.fillRect(0,holes[i].start,200,0.75*Processes[j].getSize());
+                    ctx.fillRect(0,holes[i].getFilled(),200,0.75*Processes[j].getSize());
                     ctx.fillStyle = "#FFF";
-                    ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getStart())+0.5*Number(Processes[j].getSize()));
+                    ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getFilled())+0.5*Number(Processes[j].getSize()));
+                    
+                    holes[i].filled += Number(Processes[j].getSize());
+
                 }
             }
         }
@@ -162,16 +178,15 @@ function startAllocation()
         {
             for(var i = 0 ; i < holes.length ; i++)
             {
-                if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && holes[i].full == false && Processes[j].allocated == false)
+                if((Number(Processes[j].getSize()) <= Number(holes[i].getSize())) && (Number(holes[i].getSize() - holes[i].getFilled()) > Number(Processes[j].getSize())) && Processes[j].allocated == false)
                 {
                     console.log("Process "+Processes[j].getName()+" With a size of "+Processes[j].getSize() + " Has occupied a hole with a size " + holes[i].getSize());
                     holes[i].full = true;
                     Processes[j].allocated = true;
-                    console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
+                    //console.log("Hole " + holes[i].getId() +  " with size " + holes[i].getSize() + " is now full");
 
                     dict[Processes[j].getName()] = holes[i].getId();
 
-                    
 
                     if(deallocationList.indexOf(Processes[j].getName()) == -1)
                     {
@@ -181,16 +196,19 @@ function startAllocation()
                         x.appendChild(option);
                     }
 
+                    Processes[j].start = holes[i].getFilled();
+
                     deallocationList.push(Processes[j].getName());
-                    
-                    
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
-                    ctx.fillRect(0,holes[i].start,200,0.75*Processes[j].getSize());
+                    ctx.fillRect(0,holes[i].getFilled(),200,0.75*Processes[j].getSize());
                     ctx.fillStyle = "#FFF";
-                    ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getStart())+0.5*Number(Processes[j].getSize()));
+                    ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getFilled())+0.5*Number(Processes[j].getSize()));
+                    
+                    holes[i].filled += Number(Processes[j].getSize());
+
                 }
             }
         }
@@ -235,14 +253,15 @@ function startdeAllocation()
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#FF0000";
-                    ctx.fillRect(0,holes[j].start,200,0.75*holes[j].size);
+                    ctx.fillRect(0,Processes[i].start,200,0.75*Processes[i].getSize());
                     ctx.font = "25px Arial";
                     ctx.fillStyle = "#FFF";
-                    ctx.fillText(holes[j].start + "-->" + (Number(holes[j].start)+Number(holes[j].size)), 20, Number(holes[j].start)+Number(holes[i].size)/2);
+                    //ctx.fillText(holes[j].start + "-->" + (Number(holes[j].start)+Number(holes[j].size)), 20, Number(holes[j].start)+Number(holes[i].size)/2);
 
                     holes[j].full = false;
+                    holes[j].filled -= Processes[i].getSize();
                     Processes[i].allocated = false;
-                    console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
+                    //console.log("Hole " + holes[j].getId() + " of size " + holes[j].getSize() + " is now free again");
                     console.log("Process " + Processes[i].getName() + " Is now deallocated");
 
                     // for(var k = 0 ; k < Processes.length ; k++)
