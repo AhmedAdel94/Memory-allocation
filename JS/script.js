@@ -53,7 +53,7 @@ function addHole()
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0,holeStart,200,holeSize);
+    ctx.fillRect(0,holeStart,200,0.8*holeSize);
     ctx.font = "25px Arial";
     ctx.fillStyle = "#FFF";
     ctx.fillText(holeStart + "-->" + (Number(holeStart)+Number(holeSize)), 20, Number(holeStart)+Number(holeSize)/2);
@@ -141,14 +141,14 @@ function startAllocation()
                         x.appendChild(option);
                     }
 
-                    Processes[j].start = holes[i].getFilled();
+                    Processes[j].start = holes[i].getFilled()+holes[i].start;
 
                     deallocationList.push(Processes[j].getName());
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
-                    ctx.fillRect(0,holes[i].getFilled(),200,0.75*Processes[j].getSize());
+                    ctx.fillRect(0,holes[i].getFilled()+holes[i].start,200,0.75*Processes[j].getSize());
                     ctx.fillStyle = "#FFF";
                     ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getFilled())+0.5*Number(Processes[j].getSize()));
                     
@@ -196,14 +196,14 @@ function startAllocation()
                         x.appendChild(option);
                     }
 
-                    Processes[j].start = holes[i].getFilled();
+                    Processes[j].start = holes[i].getFilled()+holes[i].start;
 
                     deallocationList.push(Processes[j].getName());
 
                     var canvas = document.getElementById("myCanvas");
                     var ctx = canvas.getContext("2d");
                     ctx.fillStyle = "#0000FF";
-                    ctx.fillRect(0,holes[i].getFilled(),200,0.75*Processes[j].getSize());
+                    ctx.fillRect(0,holes[i].getFilled()+holes[i].start,200,0.75*Processes[j].getSize());
                     ctx.fillStyle = "#FFF";
                     ctx.fillText(Processes[j].getName(), 20, Number(holes[i].getFilled())+0.5*Number(Processes[j].getSize()));
                     
