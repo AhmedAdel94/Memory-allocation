@@ -156,7 +156,7 @@ function startAllocation()
 
         console.log("You have choosen Best fit");
         holes.sort(function(a,b){return a.getSize()-b.getSize()});
-        Processes.sort(function(a,b){return a.getSize()-b.getSize()});
+        //Processes.sort(function(a,b){return a.getSize()-b.getSize()});
 
         for(var j = 0 ; j < Processes.length ; j++)
         {
